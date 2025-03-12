@@ -61,11 +61,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="5" x="0.4125" y="0.5120967741935484" useARA="0" uiLastX_Normal="119"
-          uiLastY_Normal="212" uiopen_Normal="0">
+  <FILTER uid="6" x="0.4575" y="0.5786290322580645" useARA="0" uiLastX_Normal="267"
+          uiLastY_Normal="278" uiopen_Normal="0">
     <PLUGIN name="SimpleEQ" format="VST3" category="Fx" manufacturer="yourcompany"
             version="1.0.0" file="C:\Program Files\Common Files\VST3\SimpleEQ.vst3"
-            uniqueId="f3a6e723" isInstrument="0" fileTime="1958b05100a" infoUpdateTime="1958b08ba43"
+            uniqueId="f3a6e723" isInstrument="0" fileTime="1958b05100a" infoUpdateTime="1958b22ff9d"
             numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="e954058a"/>
     <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
@@ -78,8 +78,8 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <CONNECTION srcFilter="1" srcChannel="0" dstFilter="5" dstChannel="0"/>
-  <CONNECTION srcFilter="1" srcChannel="1" dstFilter="5" dstChannel="1"/>
-  <CONNECTION srcFilter="5" srcChannel="0" dstFilter="3" dstChannel="0"/>
-  <CONNECTION srcFilter="5" srcChannel="1" dstFilter="3" dstChannel="1"/>
+  <CONNECTION srcFilter="1" srcChannel="0" dstFilter="6" dstChannel="0"/>
+  <CONNECTION srcFilter="1" srcChannel="1" dstFilter="6" dstChannel="1"/>
+  <CONNECTION srcFilter="6" srcChannel="0" dstFilter="3" dstChannel="0"/>
+  <CONNECTION srcFilter="6" srcChannel="1" dstFilter="3" dstChannel="1"/>
 </FILTERGRAPH>
