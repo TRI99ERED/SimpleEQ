@@ -379,8 +379,8 @@ juce::AudioProcessorValueTreeState::ParameterLayout SimpleEQAudioProcessor::crea
     ));
 
     layout.add(std::make_unique<juce::AudioParameterBool>(
-        "Analyser Enabled",
-        "Analyser Enabled",
+        "Analyzer Enabled",
+        "Analyzer Enabled",
         true
     ));
 

@@ -101,7 +101,7 @@ void LookAndFeel::drawToggleButton(juce::Graphics& g, juce::ToggleButton& toggle
         g.strokePath(powerButton, pst);
         g.drawEllipse(r, 2.f);
     }
-    else if (auto* analyserButton = dynamic_cast<AnalyserButton*>(&toggleButton)) {
+    else if (auto* analyzerButton = dynamic_cast<AnalyzerButton*>(&toggleButton)) {
         auto color = toggleButton.getToggleState() ? Colour(0u, 172u, 1u) : Colours::dimgrey;
 
         g.setColour(color);
@@ -109,25 +109,7 @@ void LookAndFeel::drawToggleButton(juce::Graphics& g, juce::ToggleButton& toggle
         auto bounds = toggleButton.getLocalBounds();
         g.drawRect(bounds);
 
-        auto insetRect = bounds.reduced(4);
-
-        Path randomPath;
-
-        Random r;
-
-        randomPath.startNewSubPath(
-            insetRect.getX(),
-            insetRect.getY() + insetRect.getHeight() * r.nextFloat()
-        );
-
-        for (auto x = insetRect.getX() + 1; x < insetRect.getRight(); x += 2) {
-            randomPath.lineTo(
-                x,
-                insetRect.getY() + insetRect.getHeight() * r.nextFloat()
-            );
-        }
-
-        g.strokePath(randomPath, PathStrokeType(1.f));
+        g.strokePath(analyzerButton->randomPath, PathStrokeType(1.f));
     }
 }
 
@@ -576,7 +558,7 @@ SimpleEQAudioProcessorEditor::SimpleEQAudioProcessorEditor (SimpleEQAudioProcess
     lowCutBypassButtonAttachment(audioProcessor.apvts, "LowCut Bypassed", lowCutBypassButton),
     peakBypassButtonAttachment(audioProcessor.apvts, "Peak Bypassed", peakBypassButton),
     highCutBypassButtonAttachment(audioProcessor.apvts, "HighCut Bypassed", highCutBypassButton),
-    analyserEnabledButtonAttachment(audioProcessor.apvts, "Analyser Enabled", analyserEnabledButton)
+    analyzerEnabledButtonAttachment(audioProcessor.apvts, "Analyzer Enabled", analyzerEnabledButton)
 {
     peakFreqSlider.labels.add({ 0.f, "20 Hz" });
     peakFreqSlider.labels.add({ 1.f, "20 kHz" });
@@ -606,6 +588,7 @@ SimpleEQAudioProcessorEditor::SimpleEQAudioProcessorEditor (SimpleEQAudioProcess
     lowCutBypassButton.setLookAndFeel(&lnf);
     peakBypassButton.setLookAndFeel(&lnf);
     highCutBypassButton.setLookAndFeel(&lnf);
+    analyzerEnabledButton.setLookAndFeel(&lnf);
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -617,6 +600,7 @@ SimpleEQAudioProcessorEditor::~SimpleEQAudioProcessorEditor()
     lowCutBypassButton.setLookAndFeel(nullptr);
     peakBypassButton.setLookAndFeel(nullptr);
     highCutBypassButton.setLookAndFeel(nullptr);
+    analyzerEnabledButton.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
@@ -633,6 +617,16 @@ void SimpleEQAudioProcessorEditor::resized()
     // subcomponents in your editor..
 
     auto bounds = getLocalBounds();
+
+    auto analyzerEnabledArea = bounds.removeFromTop(25);
+    analyzerEnabledArea.setWidth(100);
+    analyzerEnabledArea.setX(5);
+    analyzerEnabledArea.removeFromTop(2);
+
+    analyzerEnabledButton.setBounds(analyzerEnabledArea);
+
+    bounds.removeFromTop(5);
+
     float hRatio = 25.f / 100.f;
     auto responseArea = bounds.removeFromTop(bounds.getHeight() * hRatio);
 
@@ -671,6 +665,6 @@ std::vector<juce::Component*> SimpleEQAudioProcessorEditor::getComps() {
         &lowCutBypassButton,
         &peakBypassButton,
         &highCutBypassButton,
-        &analyserEnabledButton,
+        &analyzerEnabledButton,
     };
 }
